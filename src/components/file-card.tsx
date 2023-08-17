@@ -158,22 +158,11 @@ const getTitle = (file: TFile, plugin: Folderv) => {
   return file.basename;
 };
 
-const getDocBrief = async (
-  file: TFile,
-  plugin: Folderv,
-): Promise<string | null> => {
-  const { metadataCache, vault } = plugin.app;
-  const { briefMax, descField } = plugin.settings;
-  const get1stParagraph = async (
-    sections: SectionCache[] | undefined,
-  ): Promise<string | null> => {
-    if (!sections) return null;
-    const result = sections.find((sec) => sec.type === "paragraph");
-    if (!result) return null;
-    const { start, end } = result.position;
+const getDocBrief = async (file: TFile, plugin: Folderv): Promise<string | null> => {
+    const { vault } = plugin.app;
     let doc = await vault.cachedRead(file);
-    return doc.substring(start.offset, end.offset).substring(0, briefMax);
-  };
+    return doc;
+};
 
   const cache = metadataCache.getFileCache(file);
   if (!cache) console.log("no meta for file %o, fallback to null", file);
