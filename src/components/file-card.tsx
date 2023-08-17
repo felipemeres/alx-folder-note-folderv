@@ -195,7 +195,7 @@ const FileContent = ({
               paragraph={{ rows }}
               title={false}
             >
-              <Paragraph ellipsis={{ rows }}>{info.content}</Paragraph>
+              <Paragraph>{info.content}</Paragraph>
             </Skeleton>
           </div>
           <Tags tags={tags} />
